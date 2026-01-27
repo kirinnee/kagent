@@ -1,0 +1,7 @@
+version: '3'
+
+tasks:
+  setup:
+    desc: 'Setup the repository'
+    cmds:
+      - bun install

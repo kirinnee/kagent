@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  precommit:
+    name: Pre-Commit
+    uses: ./.github/workflows/⚡reusable-precommit.yaml
+    secrets: inherit
+    with:
+      atomi_platform: personal
+      atomi_service: dev-loop
+  #
+  #
