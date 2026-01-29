@@ -23,7 +23,7 @@ jobs:
       - nscloud-cache-tag-${{ inputs.atomi_platform }}-${{ inputs.atomi_service }}-nix-store-cache
     steps:
       # Checkout
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Setup Nix
       - uses: AtomiCloud/actions.setup-nix@v2
