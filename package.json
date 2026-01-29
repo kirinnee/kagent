@@ -6,7 +6,7 @@
   "bin": "./dist/kagent",
   "scripts": {},
   "dependencies": {
-    "commander": "^12.1.0"
+    "commander": "^14.0.2"
   },
   "devDependencies": {
     "@types/bun": "^1.1.14",
