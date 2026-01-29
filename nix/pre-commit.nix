@@ -82,9 +82,14 @@ pre-commit-lib.run {
       pass_filenames = true;
     };
 
-    /*
-      
-    */
+    a-typecheck = {
+      enable = true;
+      name = "TypeScript Type Check";
+      entry = "${packages.bun}/bin/bun run --bun tsc --noEmit";
+      files = ".*ts$";
+      language = "system";
+      pass_filenames = false;
+    };
 
   };
 }

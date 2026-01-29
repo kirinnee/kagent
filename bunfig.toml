@@ -1,0 +1,14 @@
+[test]
+
+# Skip test files from coverage
+coverageSkipTestFiles = true
+
+# Exclude test fixtures from coverage
+coveragePathIgnorePatterns = [
+  "test/fixtures/**",
+  "**/*.test.ts",
+  "**/*.spec.ts",
+]
+
+# Coverage reporters
+coverageReporter = ["text", "lcov"]

@@ -1,16 +1,16 @@
-{ pkgs, atomi, pkgs-2505, pkgs-unstable }:
+{ pkgs, atomi, pkgs-2505, pkgs-unstable, self }:
 let
   all = {
     atomipkgs = (
       with atomi;
       rec {
         /*
-          
+
           */
 
         inherit
           /*
-          
+
           */
           atomiutils
           sg
@@ -41,10 +41,36 @@ let
       }
     );
 
+    # Build the CLI package - exported as packages.kagent per spec
+    kagent = pkgs-2505.stdenv.mkDerivation {
+      name = "kagent";
+      version = "0.1.0";
+      src = self;
+
+      nativeBuildInputs = [ pkgs-2505.bun ];
+
+      buildPhase = ''
+        echo "🔨 Building CLI binary..."
+        echo "Source directory contents:"
+        ls -la
+        echo ""
+        bun install --frozen-lockfile
+        bun build ./src/cli.ts --compile --outfile kagent
+      '';
+
+      installPhase = ''
+        echo "📦 Installing binary..."
+        mkdir -p $out/bin
+        cp kagent $out/bin/kagent
+        chmod +x $out/bin/kagent
+      '';
+
+      doCheck = false;
+    };
   };
 in
 with all;
 nix-2505 //
 nix-unstable //
-atomipkgs
-
+atomipkgs //
+{ inherit kagent; }

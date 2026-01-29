@@ -10,6 +10,30 @@ jobs:
     secrets: inherit
     with:
       atomi_platform: personal
-      atomi_service: dev-loop
-  #
-  #
+      atomi_service: kagent
+
+  test-unit:
+    name: Unit Tests
+    uses: ./.github/workflows/⚡reusable-test.yaml
+    secrets: inherit
+    with:
+      atomi_platform: personal
+      atomi_service: kagent
+      test_dir: unit
+
+  test-integration:
+    name: Integration Tests
+    uses: ./.github/workflows/⚡reusable-test.yaml
+    secrets: inherit
+    with:
+      atomi_platform: personal
+      atomi_service: kagent
+      test_dir: int
+
+  build:
+    name: Build CLI
+    uses: ./.github/workflows/⚡reusable-build.yaml
+    secrets: inherit
+    with:
+      atomi_platform: personal
+      atomi_service: kagent

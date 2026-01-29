@@ -45,7 +45,7 @@
           };
           packages = import ./nix/packages.nix
             {
-              inherit pkgs atomi pkgs-2505 pkgs-unstable;
+              inherit pkgs atomi pkgs-2505 pkgs-unstable self;
             };
           env = import ./nix/env.nix {
             inherit pkgs packages;
