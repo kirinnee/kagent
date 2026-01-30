@@ -1,0 +1,21 @@
+{
+  "name": "kagent",
+  "version": "0.1.0",
+  "description": "Bun CLI Framework with OOP Architecture",
+  "type": "module",
+  "bin": "./dist/kagent",
+  "scripts": {
+    "knip": "knip"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^8.2.0",
+    "commander": "^14.0.2"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.14",
+    "@types/node": "^25.2.0",
+    "knip": "^5.83.0",
+    "should": "^13.2.3",
+    "typescript": "^5.9.3"
+  }
+}

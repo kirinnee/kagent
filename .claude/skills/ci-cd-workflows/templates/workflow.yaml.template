@@ -1,0 +1,33 @@
+name: Reusable Workflow Name
+
+on:
+  workflow_call:
+    inputs:
+      atomi_platform:
+        required: true
+        type: string
+      atomi_service:
+        required: true
+        type: string
+
+jobs:
+  job-name:
+    runs-on:
+      - nscloud-ubuntu-22.04-amd64-4x-with-cache
+      - nscloud-cache-size-50gb
+      - nscloud-cache-tag-${{ inputs.atomi_platform }}-${{ inputs.atomi_service }}-nix-store-cache
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Nix
+        uses: AtomiCloud/actions.setup-nix@v2
+
+      - name: Setup Cache
+        uses: AtomiCloud/actions.cache-{package-manager}@v1
+        with:
+          key: ${{ inputs.atomi_platform }}-${{ inputs.atomi_service }}-{cache-name}
+
+      - name: Run Script
+        run: nix develop .#ci -c ./scripts/ci/script.sh

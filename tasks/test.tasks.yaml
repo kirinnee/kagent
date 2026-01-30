@@ -1,0 +1,44 @@
+version: '3'
+
+tasks:
+  test:
+    desc: 'Run all tests (unit + int)'
+    cmds:
+      - ./scripts/test.sh unit
+      - ./scripts/test.sh int
+
+  cover:
+    desc: 'Run full coverage (unit:cover + int:cover)'
+    cmds:
+      - ./scripts/test.sh unit --cover
+      - ./scripts/test.sh int --cover
+
+  unit:
+    desc: 'Run unit tests only'
+    cmds:
+      - ./scripts/test.sh unit
+
+  int:
+    desc: 'Run integration tests only'
+    cmds:
+      - ./scripts/test.sh int
+
+  unit:watch:
+    desc: 'Run unit tests in watch mode'
+    cmds:
+      - ./scripts/test.sh unit --watch
+
+  int:watch:
+    desc: 'Run integration tests in watch mode'
+    cmds:
+      - ./scripts/test.sh int --watch
+
+  unit:cover:
+    desc: 'Run unit tests with coverage'
+    cmds:
+      - ./scripts/test.sh unit --cover
+
+  int:cover:
+    desc: 'Run integration tests with coverage'
+    cmds:
+      - ./scripts/test.sh int --cover

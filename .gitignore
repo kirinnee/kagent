@@ -1,0 +1,9 @@
+.pre-commit-config.yaml
+node_modules/
+dev-loop/
+.idea/
+.vs-code/
+coverage/
+dist/
+result/
+.kagent/

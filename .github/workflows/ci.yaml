@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  precommit:
+    name: Pre-Commit
+    uses: ./.github/workflows/⚡reusable-precommit.yaml
+    secrets: inherit
+    with:
+      atomi_platform: personal
+      atomi_service: kagent
+
+  test-unit:
+    name: Unit Tests
+    uses: ./.github/workflows/⚡reusable-test.yaml
+    secrets: inherit
+    with:
+      atomi_platform: personal
+      atomi_service: kagent
+      test_type: unit
+      coverage_target: '100'
+
+  test-integration:
+    name: Integration Tests
+    uses: ./.github/workflows/⚡reusable-test.yaml
+    secrets: inherit
+    with:
+      atomi_platform: personal
+      atomi_service: kagent
+      test_type: int
+      coverage_target: '80'
+
+  build:
+    name: Build CLI
+    uses: ./.github/workflows/⚡reusable-build.yaml
+    secrets: inherit
+    with:
+      atomi_platform: personal
+      atomi_service: kagent

@@ -1,0 +1,9 @@
+[test]
+
+# Integration tests: cover all src/ (only exclude test fixtures)
+coverageSkipTestFiles = true
+coveragePathIgnorePatterns = [
+  "test/**",
+]
+
+coverageReporter = ["text", "lcov"]

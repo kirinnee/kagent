@@ -1,0 +1,21 @@
+name: Release
+
+on:
+  workflow_run:
+    workflows: ['CI']
+    branches: [main]
+    types:
+      - completed
+
+concurrency:
+  group: release
+
+jobs:
+  release:
+    name: Semantic Release
+    if: github.event.workflow_run.conclusion == 'success'
+    uses: ./.github/workflows/⚡reusable-release.yaml
+    secrets: inherit
+    with:
+      atomi_platform: personal
+      atomi_service: dev-loop

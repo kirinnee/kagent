@@ -1,0 +1,11 @@
+[test]
+
+# Unit tests: only cover src/lib/ (exclude adapters, cli, and test fixtures)
+coverageSkipTestFiles = true
+coveragePathIgnorePatterns = [
+  "src/adapters/**",
+  "src/cli.ts",
+  "test/**",
+]
+
+coverageReporter = ["text", "lcov"]

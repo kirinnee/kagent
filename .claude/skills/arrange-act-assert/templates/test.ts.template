@@ -1,0 +1,20 @@
+import { describe, it } from 'bun:test';
+import should from 'should';
+import { ServiceName } from '../src/lib/services';
+import type { IDependency } from '../src/lib/interfaces';
+
+describe("ServiceName", () => {
+  it("should do something specific", () => {
+    // Arrange - object construction, `subject` setup, `input`s, `expected`
+    const mockDependency: IDependency = { /* mock implementation */ };
+    const subject = new ServiceName(mockDependency);
+    const input = { /* input data */ };
+    const expected = { /* expected result */ };
+
+    // Act - perform action => actual = subject.method(input)
+    const actual = subject.method(input);
+
+    // Assert - actual.should.deep.equal(expected)
+    actual.should.eql(expected);
+  });
+});

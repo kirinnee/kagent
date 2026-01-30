@@ -1,0 +1,85 @@
+atomi/workspace:
+  active: true
+  history:
+    - version: 21
+      time: 2026-01-27T22:40:49.693244Z
+      answers:
+        atomi/workspace/enable-helm:
+          type: Bool
+          value: false
+        atomi/workspace/enable-docker:
+          type: Bool
+          value: false
+        atomi/workspace/enable-secret:
+          type: Bool
+          value: false
+        atomi/workspace/platform:
+          type: String
+          value: personal
+        atomi/workspace/runtime:
+          type: String
+          value: Bun
+        atomi/workspace/service:
+          type: String
+          value: dev-loop
+      deterministic_states: {}
+atomi/nix-init:
+  active: true
+  history:
+    - version: 14
+      time: 2026-01-27T22:39:57.179321Z
+      answers:
+        service:
+          type: String
+          value: dev-loop
+        init-type:
+          type: String
+          value: AtomiCloud Suite
+        platform:
+          type: String
+          value: personal
+        infra:
+          type: Bool
+          value: false
+        runtime:
+          type: String
+          value: Bun
+      deterministic_states: {}
+    - version: 15
+      time: 2026-02-01T05:47:44.768421Z
+      answers:
+        platform:
+          type: String
+          value: personal
+        init-type:
+          type: String
+          value: AtomiCloud Suite
+        infra:
+          type: Bool
+          value: false
+        service:
+          type: String
+          value: dev-loop
+        runtime:
+          type: String
+          value: Bun
+      deterministic_states: {}
+    - version: 17
+      time: 2026-02-03T23:18:35.484020Z
+      answers:
+        platform:
+          type: String
+          value: personal
+        infra:
+          type: Bool
+          value: false
+        runtime:
+          type: String
+          value: Bun
+        service:
+          type: String
+          value: dev-loop
+        init-type:
+          type: String
+          value: AtomiCloud Suite
+      deterministic_states: {}
