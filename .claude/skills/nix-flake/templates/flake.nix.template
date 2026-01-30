@@ -1,0 +1,34 @@
+{
+  description = "Project description";
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+  };
+
+  outputs = { self, nixpkgs, flake-utils, treefmt-nix }:
+    flake-utils.lib.eachDefaultSystemMap (system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+
+        # Import from nix/ directory
+        inherit (import ./nix/packages.nix { inherit pkgs; }) packages;
+        inherit (import ./nix/env.nix { inherit pkgs; }) env;
+        inherit (import ./nix/shells.nix {
+          inherit pkgs env packages treefmt-nix;
+        }) shells;
+        inherit (import ./nix/pre-commit.nix { inherit pkgs; }) pre-commit;
+        inherit (import ./nix/fmt.nix {
+          inherit pkgs treefmt-nix;
+        }) fmt;
+      in {
+        inherit packages fmt;
+
+        devShells = {
+          default = shells.default;
+          ci = shells.ci;
+          releaser = shells.releaser;
+        };
+      });
+}

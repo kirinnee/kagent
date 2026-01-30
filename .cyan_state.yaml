@@ -1,0 +1,47 @@
+atomi/nix-init:
+  active: true
+  history:
+    - version: 14
+      time: 2026-01-27T22:39:57.179321Z
+      answers:
+        service:
+          type: String
+          value: dev-loop
+        init-type:
+          type: String
+          value: AtomiCloud Suite
+        infra:
+          type: Bool
+          value: false
+        runtime:
+          type: String
+          value: Bun
+        platform:
+          type: String
+          value: personal
+      deterministic_states: {}
+atomi/workspace:
+  active: true
+  history:
+    - version: 21
+      time: 2026-01-27T22:40:49.693244Z
+      answers:
+        atomi/workspace/runtime:
+          type: String
+          value: Bun
+        atomi/workspace/enable-secret:
+          type: Bool
+          value: false
+        atomi/workspace/enable-docker:
+          type: Bool
+          value: false
+        atomi/workspace/platform:
+          type: String
+          value: personal
+        atomi/workspace/service:
+          type: String
+          value: dev-loop
+        atomi/workspace/enable-helm:
+          type: Bool
+          value: false
+      deterministic_states: {}

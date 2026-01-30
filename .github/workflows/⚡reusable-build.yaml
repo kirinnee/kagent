@@ -1,0 +1,32 @@
+name: ⚡ Reusable Build
+
+on:
+  workflow_call:
+    inputs:
+      atomi_platform:
+        required: true
+        type: string
+      atomi_service:
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: Build
+    runs-on:
+      - nscloud-ubuntu-22.04-amd64-4x8-with-cache
+      - nscloud-cache-size-50gb
+      - nscloud-cache-tag-${{ inputs.atomi_platform }}-${{ inputs.atomi_service }}-nix-store-cache
+    steps:
+      # Checkout
+      - uses: actions/checkout@v4
+
+      # Setup Nix
+      - uses: AtomiCloud/actions.setup-nix@v2
+
+      # Setup Bun cache
+      - uses: AtomiCloud/actions.cache-bun@v1
+
+      # Build
+      - name: Build CLI
+        run: nix develop .#ci -c ./scripts/ci/build.sh
