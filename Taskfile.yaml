@@ -1,12 +1,9 @@
 version: '3'
 
-tasks:
-  setup:
-    desc: 'Install dependencies and configure repository'
-    cmds:
-      - bun install
-      - pre-commit install || true
+includes:
+  test: tasks/test.tasks.yaml
 
+tasks:
   dev:
     desc: 'Run CLI in development mode'
     cmds:
@@ -22,21 +19,23 @@ tasks:
     cmds:
       - rm -rf dist node_modules coverage
 
-  lint:
-    desc: 'Run pre-commit hooks'
-    cmds:
-      - pre-commit run --all
-
-  deadcode:
-    desc: 'Find code only used by tests or not used at all (requires human verification)'
-    cmds:
-      - bun knip --include classMembers,types
-
-  # Alias for running all tests
   test:
     desc: 'Run all tests (unit + int)'
     cmds:
       - task: test:test
 
-includes:
-  test: tasks/test.tasks.yaml
+  setup:
+    desc: 'Setup the repository'
+    cmds: #
+      - bun install
+      #
+      #
+  lint:
+    cmds:
+      - pre-commit run --all
+
+  deadcode:
+    desc: 'Find code only used by tests or not used at all (requires verification)'
+    cmds: #
+      - bun knip --include classMembers,types
+      #

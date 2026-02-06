@@ -1,49 +1,24 @@
-atomi/workspace:
-  active: true
-  history:
-    - version: 21
-      time: 2026-01-27T22:40:49.693244Z
-      answers:
-        atomi/workspace/enable-helm:
-          type: Bool
-          value: false
-        atomi/workspace/enable-docker:
-          type: Bool
-          value: false
-        atomi/workspace/enable-secret:
-          type: Bool
-          value: false
-        atomi/workspace/platform:
-          type: String
-          value: personal
-        atomi/workspace/runtime:
-          type: String
-          value: Bun
-        atomi/workspace/service:
-          type: String
-          value: dev-loop
-      deterministic_states: {}
 atomi/nix-init:
   active: true
   history:
     - version: 14
       time: 2026-01-27T22:39:57.179321Z
       answers:
-        service:
-          type: String
-          value: dev-loop
-        init-type:
-          type: String
-          value: AtomiCloud Suite
-        platform:
-          type: String
-          value: personal
         infra:
           type: Bool
           value: false
+        platform:
+          type: String
+          value: personal
+        service:
+          type: String
+          value: dev-loop
         runtime:
           type: String
           value: Bun
+        init-type:
+          type: String
+          value: AtomiCloud Suite
       deterministic_states: {}
     - version: 15
       time: 2026-02-01T05:47:44.768421Z
@@ -51,35 +26,123 @@ atomi/nix-init:
         platform:
           type: String
           value: personal
-        init-type:
-          type: String
-          value: AtomiCloud Suite
-        infra:
-          type: Bool
-          value: false
         service:
           type: String
           value: dev-loop
         runtime:
           type: String
           value: Bun
+        infra:
+          type: Bool
+          value: false
+        init-type:
+          type: String
+          value: AtomiCloud Suite
       deterministic_states: {}
     - version: 17
       time: 2026-02-03T23:18:35.484020Z
       answers:
+        infra:
+          type: Bool
+          value: false
+        init-type:
+          type: String
+          value: AtomiCloud Suite
+        service:
+          type: String
+          value: dev-loop
+        runtime:
+          type: String
+          value: Bun
         platform:
           type: String
           value: personal
+      deterministic_states: {}
+    - version: 23
+      time: 2026-02-06T00:36:19.721756Z
+      answers:
         infra:
           type: Bool
           value: false
         runtime:
           type: String
           value: Bun
-        service:
-          type: String
-          value: dev-loop
         init-type:
           type: String
           value: AtomiCloud Suite
+        platform:
+          type: String
+          value: personal
+        service:
+          type: String
+          value: dev-loop
+      deterministic_states: {}
+atomi/workspace:
+  active: true
+  history:
+    - version: 21
+      time: 2026-01-27T22:40:49.693244Z
+      answers:
+        atomi/workspace/runtime:
+          type: String
+          value: Bun
+        atomi/workspace/platform:
+          type: String
+          value: personal
+        atomi/workspace/enable-docker:
+          type: Bool
+          value: false
+        atomi/workspace/service:
+          type: String
+          value: dev-loop
+        atomi/workspace/enable-helm:
+          type: Bool
+          value: false
+        atomi/workspace/enable-secret:
+          type: Bool
+          value: false
+      deterministic_states: {}
+    - version: 24
+      time: 2026-02-06T00:36:59.256611Z
+      answers:
+        atomi/workspace/platform:
+          type: String
+          value: personal
+        atomi/workspace/enable-docker:
+          type: Bool
+          value: false
+        atomi/workspace/enable-helm:
+          type: Bool
+          value: false
+        atomi/workspace/service:
+          type: String
+          value: dev-loop
+        atomi/workspace/runtime:
+          type: String
+          value: Bun
+        atomi/workspace/enable-secret:
+          type: Bool
+          value: false
+      deterministic_states: {}
+    - version: 25
+      time: 2026-02-06T01:18:39.476019Z
+      answers:
+        atomi/workspace/service:
+          type: String
+          value: dev-loop
+        atomi/workspace/enable-docker:
+          type: Bool
+          value: false
+        atomi/workspace/runtime:
+          type: String
+          value: Bun
+        atomi/workspace/enable-secret:
+          type: Bool
+          value: false
+        atomi/workspace/platform:
+          type: String
+          value: personal
+        atomi/workspace/enable-helm:
+          type: Bool
+          value: false
       deterministic_states: {}

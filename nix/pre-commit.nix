@@ -26,15 +26,6 @@ pre-commit-lib.run {
       pass_filenames = true;
     };
 
-    a-knip = {
-      enable = true;
-      name = "Knip";
-      description = "Detect unused files, dependencies, and exports";
-      entry = "${packages.bun}/bin/bun knip";
-      language = "system";
-      pass_filenames = false;
-    };
-
     a-infisical = {
       enable = true;
       name = "Secrets Scanning";
@@ -99,6 +90,19 @@ pre-commit-lib.run {
       language = "system";
       pass_filenames = false;
     };
+
+    a-deadcode = {
+      enable = true;
+      name = "Deadcode Knip";
+      description = "Detect unused files, dependencies, and exports";
+      entry = "${packages.bun}/bin/bun knip";
+      language = "system";
+      pass_filenames = false;
+    };
+
+    /*
+      
+    */
 
   };
 }
