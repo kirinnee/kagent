@@ -1,4 +1,4 @@
-# Arrange-Act-Assert Test Format - Reference
+# Testing Conventions - Reference
 
 ## The AAA Pattern
 
@@ -137,36 +137,39 @@ describe('UserService', () => {
 
 ## Mocking Dependencies
 
-### Simple Mock
+### Simple Mock (Stub)
+
+Use when you just need to provide a dependency without verifying calls:
 
 ```typescript
 describe('UserService', () => {
-  it('should log greeting', () => {
-    // Arrange
-    const mockLogger = {
-      log: (message: string) => {
-        // Do nothing or store for assertion
-      },
+  it('should greet user', () => {
+    // Arrange - stub that does nothing
+    const mockLogger: ILogger = {
+      log: () => {}, // No-op stub
     };
     const subject = new UserService(mockLogger);
     const input = { id: '1', name: 'Test' };
+    const expected = 'Hello, Test!';
 
     // Act
-    subject.greet(input);
+    const actual = subject.greet(input);
 
-    // Assert - verify logger was called
-    // (in real tests, use a spy library or custom mock)
+    // Assert
+    actual.should.equal(expected);
   });
 });
 ```
 
 ### Mock with Return Value
 
+Use when the dependency needs to return specific data:
+
 ```typescript
 describe('DataService', () => {
-  it('should fetch and transform data', () => {
-    // Arrange
-    const mockHttpClient = {
+  it('should fetch and transform data', async () => {
+    // Arrange - mock that returns test data
+    const mockHttpClient: IHttpClient = {
       get: (url: string) => Promise.resolve('{"name": "Test"}'),
     };
     const subject = new DataService(mockHttpClient);
@@ -178,6 +181,109 @@ describe('DataService', () => {
 
     // Assert
     actual.should.eql(expected);
+  });
+});
+```
+
+## Spies (Verifying Side Effects)
+
+Use spies when you need to **verify what was called** and with **what arguments**.
+
+### Spy Pattern: Collect Calls
+
+```typescript
+describe('LoggingService', () => {
+  it('should log formatted messages', () => {
+    // Arrange - spy that collects all calls
+    const loggedMessages: string[] = [];
+    const spyLogger: ILogger = {
+      log: (message: string) => {
+        loggedMessages.push(message);
+      },
+    };
+    const subject = new LoggingService(spyLogger);
+    const input = { level: 'info', text: 'Hello' };
+    const expectedLogs = ['[INFO] Hello'];
+
+    // Act
+    subject.logFormatted(input);
+
+    // Assert - verify what was logged
+    loggedMessages.should.eql(expectedLogs);
+  });
+});
+```
+
+### Spy Pattern: Capture Single Argument
+
+```typescript
+describe('NotificationService', () => {
+  it('should send correct payload', async () => {
+    // Arrange - spy that captures the argument
+    let capturedPayload: any = null;
+    const mockSender: ISender = {
+      send: (payload: any) => {
+        capturedPayload = payload;
+        return Promise.resolve();
+      },
+    };
+    const subject = new NotificationService(mockSender);
+    const input = { userId: '123', message: 'Hello' };
+
+    // Act
+    await subject.notify(input);
+
+    // Assert - verify the payload structure
+    capturedPayload.should.have.property('to', '123');
+    capturedPayload.should.have.property('body', 'Hello');
+  });
+});
+```
+
+### Spy Pattern: Count Calls
+
+```typescript
+describe('RetryService', () => {
+  it('should retry 3 times on failure', async () => {
+    // Arrange - spy that counts calls
+    let callCount = 0;
+    const mockClient: IClient = {
+      fetch: () => {
+        callCount++;
+        throw new Error('Network error');
+      },
+    };
+    const subject = new RetryService(mockClient, { maxRetries: 3 });
+
+    // Act
+    try {
+      await subject.fetchWithRetry('/api');
+    } catch (e) {
+      // Expected
+    }
+
+    // Assert - verify call count
+    callCount.should.equal(3);
+  });
+});
+```
+
+### Spy Pattern: Verify Call Order
+
+```typescript
+describe('Pipeline', () => {
+  it('should call steps in order', () => {
+    // Arrange - track call order
+    const callOrder: string[] = [];
+    const mockStep1 = { run: () => callOrder.push('step1') };
+    const mockStep2 = { run: () => callOrder.push('step2') };
+    const subject = new Pipeline([mockStep1, mockStep2]);
+
+    // Act
+    subject.execute();
+
+    // Assert - verify order
+    callOrder.should.eql(['step1', 'step2']);
   });
 });
 ```

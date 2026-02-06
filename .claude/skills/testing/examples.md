@@ -1,4 +1,4 @@
-# Arrange-Act-Assert Test Format - Examples
+# Testing Conventions - Examples
 
 ## Example 1: Simple Stateless Service
 
