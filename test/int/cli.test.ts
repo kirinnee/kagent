@@ -245,7 +245,7 @@ describe('CLI Integration Tests', () => {
 
       // Assert
       should(value).equal('test-value');
-      all.TEST_KAGENT_VAR.should.equal('test-value');
+      (all.TEST_KAGENT_VAR as unknown as string).should.equal('test-value');
 
       // Cleanup
       process.env.TEST_KAGENT_VAR = undefined;
