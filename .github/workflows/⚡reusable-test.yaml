@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v4
 
       # Setup Nix
-      - uses: AtomiCloud/actions.setup-nix@v2
+      - uses: AtomiCloud/actions.setup-nix@v3
 
       # Setup Bun cache
       - uses: AtomiCloud/actions.cache-bun@v1
